@@ -67,7 +67,7 @@ ItrateData();
 button.innerHTML = "Insert"
 form.append(inputname, inputmodel, inputyaer, inputpower, button);
 tableContent.append(table, form)
-
+Jquery()
 
 //-------------------------------------------------------------------------------------
 function InsertData() {
@@ -75,6 +75,7 @@ function InsertData() {
         const car = new Car(inputname.value, inputmodel.value, inputyaer.value, inputpower.value);
         datatd.push(car);
         ItrateData();
+        Jquery();
     } else {
         alert("جای خالی را با متن مناسب پر کنید !!!")
     }
@@ -108,7 +109,7 @@ function ShowCar(carOb) {
     tabletr.append(tabletd1, tabletd2, tabletd3, tabletd4);
     return tabletr;
 }
-setInterval(function () {
+function Jquery() {
     $(document).ready(function () {
         $("table").css({width: '83%', border: "1px black solid", backgroundColor: 'gray'});
         $("th").css({
@@ -132,5 +133,7 @@ setInterval(function () {
         });
         $('form').css({backgroundColor: '#65bf79', height: '20vh', textAlign: "center", marginTop: '1vh',})
     });
-},1000)
+}
+
+
 //--------------------------------------------------------------------------------------
