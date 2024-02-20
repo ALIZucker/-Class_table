@@ -14,7 +14,7 @@ inputmodel.setAttribute("id", "model");
 inputpower.setAttribute("id", "power");
 button.setAttribute("onclick", "InsertData()");
 
-///////////////////////--------------------------------------------------------------
+///////////////////////--------------------------------------------------------------(Class)
 class Vehicle {
     constructor(strname, stryear, strmodel) {
         this.cname = strname;
@@ -47,7 +47,7 @@ class Car extends Vehicle {
 }
 
 
-//-----------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------(Table)
 const datatitr = ["Car Name", "Model", "Year", "Power"];
 
 for (let x of datatitr) {
@@ -58,44 +58,42 @@ table.append(tabletr);
 
 const datatd = [];
 
-const pride = new Car("پراید111","1399", "سایپا", "75horse");
-const pride1 = new Car("پراید111","1399", "سایپا", "75horse");
-datatd.push(pride,pride1);
-
-ItrateData();
-
+const pride = new Car("پراید111", "1399", "سایپا", "75horse");
+const pride1 = new Car("پراید131", "1389", "سایپا", "79horse");
+datatd.push(pride, pride1);
+console.log(datatd);
+for (let x of datatd) {
+    table.append(ShowCar(x))
+}
+console.log(datatd)
 button.innerHTML = "Insert"
 form.append(inputname, inputmodel, inputyaer, inputpower, button);
 tableContent.append(table, form)
+Jquery()
 
-
-//-------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------(function)
 function InsertData() {
     if (inputname.value !== "" && inputmodel.value !== "" && inputyaer.value !== "" && inputpower.value !== "") {
         const car = new Car(inputname.value, inputmodel.value, inputyaer.value, inputpower.value);
         datatd.push(car);
-        ItrateData();
+        table.append(ShowCar(car));
+        console.log(datatd);
+        Jquery();
     } else {
         alert("جای خالی را با متن مناسب پر کنید !!!")
     }
 
 }
 
-function ItrateData() {
-    for (let x of datatd) {
-        table.append(ShowCar(x))
-    }
-
-}
 
 function CreateTitr(strName) {
     const tableth = document.createElement("th");
     tableth.innerHTML = strName
-    console.log("asdasdasdasd")
     return tableth;
 }
 
 function ShowCar(carOb) {
+
     const tabletd1 = document.createElement("td");
     const tabletd2 = document.createElement("td");
     const tabletd3 = document.createElement("td");
@@ -108,9 +106,10 @@ function ShowCar(carOb) {
     tabletr.append(tabletd1, tabletd2, tabletd3, tabletd4);
     return tabletr;
 }
-setInterval(function () {
+
+function Jquery() {
     $(document).ready(function () {
-        $("table").css({width: '83%', border: "1px black solid", backgroundColor: 'gray'});
+        $("table").css({width: '83%', border: "1px black solid", marginLeft: '10%'});
         $("th").css({
             width: '20%', border: "1px black solid", fontSize: '1.5vw', padding: '2vh 0'
         });
@@ -122,15 +121,18 @@ setInterval(function () {
             height: '5vh',
             fontSize: '1.3vw',
             padding: '0.5vh 1vw',
-            direction:"rtl"
+            direction: "rtl"
         });
         $('a').css({
             width: '8vw',
             height: '4vh',
-            marginLeft: '15vw',backgroundColor: '#dbd7d7', textAlign: "center",padding: '0.7vh 0',
-            marginTop: '5vh',fontSize: '1.1vw',display: 'inline-block'
+            marginLeft: '15vw', backgroundColor: '#dbd7d7', textAlign: "center", padding: '0.7vh 0', cursor: "pointer",
+            marginTop: '5vh', fontSize: '1.1vw', display: 'inline-block'
         });
-        $('form').css({backgroundColor: '#65bf79', height: '20vh', textAlign: "center", marginTop: '1vh',})
+        $('form').css({backgroundColor: '#65bf79', height: '20vh', textAlign: "center", marginTop: '1vh'});
+        $(tableContent).css({textAlign: "center", width: '100%'})
     });
-},1000)
+}
+
+
 //--------------------------------------------------------------------------------------
